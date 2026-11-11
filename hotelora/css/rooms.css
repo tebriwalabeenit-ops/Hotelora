@@ -1,0 +1,336 @@
+/* ==========================================================================
+   HOTELORA - ROOMS LISTING & COMPARISON STYLESHEET
+   ========================================================================== */
+
+.page-hero {
+  background: linear-gradient(rgba(20, 23, 28, 0.7), rgba(20, 23, 28, 0.8)),
+              url('https://images.unsplash.com/photo-1578683010236-d716f9a3f461?auto=format&fit=crop&w=2000&q=80') center/cover no-repeat;
+  color: #ffffff;
+  padding: 60px 0;
+  text-align: center;
+}
+
+.page-hero h1 {
+  font-size: 2.8rem;
+  color: #ffffff;
+  margin-bottom: 12px;
+}
+
+.page-hero p {
+  font-size: 1.05rem;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* Filter & Controls Toolbar */
+.rooms-toolbar-section {
+  background-color: #ffffff;
+  border-bottom: 1px solid var(--border-color);
+  padding: 20px 0;
+  margin-bottom: 40px;
+  box-shadow: var(--shadow-sm);
+}
+
+.rooms-filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.filter-controls-group {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.filter-input-wrap {
+  min-width: 170px;
+}
+
+.filter-input-wrap label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.filter-select {
+  padding: 8px 12px;
+  font-size: 0.88rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-color);
+}
+
+.toolbar-buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Availability Calendar Section in Rooms Page */
+.calendar-collapsible-section {
+  background-color: var(--bg-cream-alt);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-color);
+  padding: 24px;
+  margin-bottom: 40px;
+}
+
+.calendar-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.calendar-section-header h3 {
+  font-size: 1.3rem;
+  color: var(--charcoal-900);
+}
+
+/* Room Card Extended Features */
+.room-card.is-selected-for-compare {
+  border-color: var(--primary-gold);
+  box-shadow: 0 0 0 2px var(--primary-gold);
+}
+
+.room-amenities-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 18px;
+}
+
+.amenity-chip {
+  background-color: var(--bg-cream);
+  border: 1px solid var(--border-color);
+  font-size: 0.75rem;
+  color: var(--charcoal-800);
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+}
+
+.room-compare-checkbox-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  user-select: none;
+  margin-top: 10px;
+}
+
+.room-compare-checkbox-label input[type="checkbox"] {
+  accent-color: var(--primary-gold);
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.room-discount-badge {
+  background-color: var(--status-full);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-left: 6px;
+}
+
+/* Sticky Bottom Comparison Floating Dock */
+.comparison-dock {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(120%);
+  background-color: var(--charcoal-900);
+  color: #ffffff;
+  padding: 14px 28px;
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  z-index: 99;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.comparison-dock.active {
+  transform: translateX(-50%) translateY(0);
+}
+
+.dock-text {
+  font-size: 0.92rem;
+  font-weight: 500;
+}
+
+.dock-counter {
+  background-color: var(--primary-gold);
+  color: #ffffff;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  font-size: 0.85rem;
+  margin-right: 4px;
+}
+
+.dock-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dock-btn-clear {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.85rem;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.dock-btn-clear:hover {
+  color: #ffffff;
+}
+
+/* Comparison Table Modal */
+.comparison-table-wrapper {
+  overflow-x: auto;
+  margin-top: 10px;
+}
+
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  min-width: 600px;
+}
+
+.comparison-table th, .comparison-table td {
+  padding: 14px 18px;
+  border: 1px solid var(--border-color);
+  text-align: left;
+}
+
+.comparison-table th {
+  background-color: var(--bg-cream-alt);
+  color: var(--charcoal-900);
+  font-weight: 600;
+  width: 25%;
+}
+
+.comparison-table tr.diff-highlight td {
+  background-color: rgba(179, 139, 77, 0.08);
+}
+
+.comparison-room-header {
+  text-align: center !important;
+}
+
+.comparison-room-image {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  margin-bottom: 8px;
+}
+
+.comparison-room-title {
+  font-size: 1.1rem;
+  margin-bottom: 4px;
+}
+
+.comparison-room-price {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--primary-gold-dark);
+}
+
+.feature-check {
+  color: var(--status-available);
+  font-weight: 700;
+}
+
+.feature-cross {
+  color: var(--status-full);
+}
+
+/* Room Details Modal Specifics */
+.room-modal-hero-img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  margin-bottom: 20px;
+}
+
+.room-modal-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 24px;
+}
+
+.room-modal-info h3 {
+  font-size: 1.8rem;
+  margin-bottom: 8px;
+}
+
+.room-modal-info p {
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.room-modal-sidebar {
+  background-color: var(--bg-cream);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 18px;
+}
+
+.room-modal-sidebar h4 {
+  font-size: 1.05rem;
+  margin-bottom: 14px;
+  font-family: var(--font-sans);
+}
+
+.pricing-preview-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 0.88rem;
+}
+
+/* Responsive adjustment for comparison */
+@media (max-width: 768px) {
+  .rooms-filter-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .filter-controls-group {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .filter-input-wrap {
+    width: 100%;
+  }
+  .comparison-dock {
+    width: 90%;
+    padding: 12px 18px;
+    justify-content: space-between;
+  }
+  .room-modal-grid {
+    grid-template-columns: 1fr;
+  }
+}
+

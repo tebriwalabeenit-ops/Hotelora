@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rooms & Suites — HOTELORA Luxury Accommodations</title>
+  <meta name="description" content="Browse, compare, and reserve our luxury hotel rooms and suites at HOTELORA. Live availability calendar and dynamic rates.">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/rooms.css">
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="index.html" class="brand-logo" aria-label="HOTELORA Home">
+        <div class="brand-logo-mark">H</div>
+        HOTEL<span>ORA</span>
+      </a>
+
+      <nav class="main-nav" id="main-nav">
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="rooms.html" class="nav-link active">Rooms</a></li>
+          <li><a href="index.html#amenities" class="nav-link">Amenities</a></li>
+          <li><a href="my-bookings.html" class="nav-link">My Bookings</a></li>
+          <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+        </ul>
+        <div class="header-actions">
+          <a href="admin.html" class="btn-admin-link">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            Admin Portal
+          </a>
+        </div>
+      </nav>
+
+      <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle navigation menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Page Hero -->
+    <section class="page-hero">
+      <div class="container">
+        <h1>Accommodations &amp; Suites</h1>
+        <p>Thoughtfully appointed coastal sanctuaries designed for serene rest, bespoke comfort, and effortless luxury.</p>
+      </div>
+    </section>
+
+    <!-- Filter & Options Toolbar -->
+    <section class="rooms-toolbar-section">
+      <div class="container">
+        <div class="rooms-filter-bar">
+          <div class="filter-controls-group">
+            <div class="filter-input-wrap">
+              <label for="filter-category">Room Category</label>
+              <select id="filter-category" class="form-select filter-select">
+                <option value="all" selected>All Categories</option>
+                <option value="Standard Room">Standard Room</option>
+                <option value="Deluxe Room">Deluxe Room</option>
+                <option value="Executive Room">Executive Room</option>
+                <option value="Premium Suite">Premium Suite</option>
+                <option value="Family Suite">Family Suite</option>
+              </select>
+            </div>
+
+            <div class="filter-input-wrap">
+              <label for="filter-bed">Bed Type</label>
+              <select id="filter-bed" class="form-select filter-select">
+                <option value="all" selected>All Bed Configurations</option>
+                <option value="King">King Bed</option>
+                <option value="Queen">Queen Bed</option>
+                <option value="Twin">Twin Beds</option>
+              </select>
+            </div>
+
+            <div class="filter-input-wrap" style="min-width: 190px;">
+              <label for="filter-price">Max Nightly Rate: <strong id="filter-price-val">$1,000</strong></label>
+              <input type="range" id="filter-price" min="100" max="1000" step="25" value="1000" style="width: 100%; accent-color: var(--primary-gold);" />
+            </div>
+
+            <div class="filter-input-wrap">
+              <label for="sort-rooms">Sort By</label>
+              <select id="sort-rooms" class="form-select filter-select">
+                <option value="default" selected>Recommended</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="capacity">Max Guests Capacity</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="toolbar-buttons">
+            <button type="button" class="btn btn-outline btn-sm" id="btn-toggle-calendar">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+              View Availability Calendar
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <!-- Collapsible Availability Calendar Section -->
+      <section class="calendar-collapsible-section" id="rooms-calendar-section" style="display: none;">
+        <div class="calendar-section-header">
+          <div>
+            <h3>Live Monthly Availability Calendar</h3>
+            <p class="text-muted" style="font-size: 0.88rem;">Select check-in and check-out dates directly on the calendar to check live inventory status.</p>
+          </div>
+        </div>
+        <div id="rooms-calendar-mount">
+          <!-- Calendar component rendered by AvailabilityEngine -->
+        </div>
+      </section>
+
+      <!-- Rooms Grid Container -->
+      <section class="rooms-listing-section" style="padding-bottom: 90px;">
+        <div class="rooms-grid" id="rooms-list-container">
+          <!-- Dynamically populated by js/rooms.js -->
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Sticky Comparison Dock -->
+  <aside class="comparison-dock" id="comparison-dock" aria-live="polite">
+    <div class="dock-text">
+      <span class="dock-counter" id="dock-counter">0/3</span>
+      <span>Rooms Selected for Comparison</span>
+    </div>
+    <div class="dock-actions">
+      <button type="button" class="dock-btn-clear" id="dock-clear-btn">Clear</button>
+      <button type="button" class="btn btn-primary btn-sm" id="dock-compare-btn" disabled>Compare Side by Side</button>
+    </div>
+  </aside>
+
+  <!-- Comparison Modal -->
+  <div class="modal-overlay" id="room-comparison-modal" role="dialog" aria-modal="true" aria-labelledby="modal-comp-title">
+    <div class="modal-container" style="max-width: 960px;">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modal-comp-title">Room Specifications Comparison</h3>
+        <button type="button" class="modal-close" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p class="text-muted" style="margin-bottom: 16px; font-size: 0.9rem;">
+          Rows with differing features and rates between your chosen rooms are highlighted in warm gold.
+        </p>
+        <div class="comparison-table-wrapper" id="comparison-table-mount">
+          <!-- Populated by JavaScript -->
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-dark modal-close">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Room Details Modal -->
+  <div class="modal-overlay" id="room-details-modal" role="dialog" aria-modal="true" aria-labelledby="modal-room-title">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modal-room-title">Room Details</h3>
+        <button type="button" class="modal-close" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <!-- Injected via JavaScript -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline modal-close">Close</button>
+        <a href="#" id="modal-book-now-btn" class="btn btn-primary">Book This Room</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="brand-logo">
+            <div class="brand-logo-mark">H</div>
+            HOTEL<span>ORA</span>
+          </a>
+          <p>Where understated luxury meets unparalleled coastal tranquility. Experience hospitality perfected for the modern traveler.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="rooms.html">Rooms & Suites</a></li>
+            <li><a href="my-bookings.html">My Bookings</a></li>
+            <li><a href="admin.html">Admin Dashboard</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Our Categories</h4>
+          <ul class="footer-links">
+            <li><a href="rooms.html">Standard Room</a></li>
+            <li><a href="rooms.html">Deluxe Room</a></li>
+            <li><a href="rooms.html">Executive Room</a></li>
+            <li><a href="rooms.html">Premium Suite</a></li>
+            <li><a href="rooms.html">Family Suite</a></li>
+          </ul>
+        </div>
+        <div class="footer-col footer-contact-info">
+          <h4>Concierge Desk</h4>
+          <p>742 Ocean Promenade, Grand Bay</p>
+          <p>+1 (800) 468-3567</p>
+          <p>reservations@hotelora.com</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>&copy; 2026 HOTELORA Resort &amp; Spa. All rights reserved.</div>
+        <div><a href="admin.html" style="color: var(--primary-gold-light);">Administration Portal</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/storage.js"></script>
+  <script src="js/validation.js"></script>
+  <script src="js/pricing.js"></script>
+  <script src="js/availability.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/rooms.js"></script>
+</body>
+</html>
+

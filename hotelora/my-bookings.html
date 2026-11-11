@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Bookings — HOTELORA Customer Portal</title>
+  <meta name="description" content="View, manage, print, or cancel your reservations at HOTELORA.">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .my-bookings-wrap {
+      padding: 50px 0 80px;
+    }
+    .search-filter-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      margin-bottom: 30px;
+      box-shadow: var(--shadow-sm);
+    }
+    .search-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .search-input-flex {
+      flex: 1;
+      min-width: 260px;
+      position: relative;
+    }
+    .status-tab-group {
+      display: flex;
+      gap: 8px;
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid var(--border-light);
+      flex-wrap: wrap;
+    }
+    .status-tab-btn {
+      background: none;
+      border: 1px solid var(--border-color);
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .status-tab-btn.active {
+      background-color: var(--charcoal-900);
+      color: #ffffff;
+      border-color: var(--charcoal-900);
+    }
+    .booking-cards-list {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .customer-booking-card {
+      background: #ffffff;
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 24px;
+      box-shadow: var(--shadow-sm);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      align-items: center;
+      transition: var(--transition);
+    }
+    .customer-booking-card:hover {
+      border-color: var(--primary-gold-light);
+      box-shadow: var(--shadow-md);
+    }
+    .booking-card-main h3 {
+      font-size: 1.3rem;
+      margin-bottom: 6px;
+      color: var(--charcoal-900);
+    }
+    .booking-meta-row {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+    .booking-card-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      min-width: 150px;
+    }
+    .booking-ref-badge {
+      display: inline-block;
+      font-weight: 700;
+      color: var(--primary-gold-dark);
+      margin-right: 8px;
+    }
+    @media (max-width: 768px) {
+      .customer-booking-card {
+        grid-template-columns: 1fr;
+      }
+      .booking-card-actions {
+        flex-direction: row;
+        width: 100%;
+      }
+      .booking-card-actions .btn {
+        flex: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="index.html" class="brand-logo">
+        <div class="brand-logo-mark">H</div>
+        HOTEL<span>ORA</span>
+      </a>
+
+      <nav class="main-nav" id="main-nav">
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="rooms.html" class="nav-link">Rooms</a></li>
+          <li><a href="my-bookings.html" class="nav-link active">My Bookings</a></li>
+        </ul>
+        <div class="header-actions">
+          <a href="admin.html" class="btn-admin-link">Admin Portal</a>
+          <a href="rooms.html" class="btn btn-primary btn-sm">New Booking</a>
+        </div>
+      </nav>
+
+      <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle navigation menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="my-bookings-wrap">
+    <div class="container">
+      <div class="section-header" style="text-align: left; margin-bottom: 30px;">
+        <span class="section-subtitle">Customer Portal</span>
+        <h1 class="section-title">Manage Your Reservations</h1>
+        <p class="section-description">Lookup your reservations, print confirmation vouchers, or cancel upcoming bookings.</p>
+      </div>
+
+      <!-- Search & Filters -->
+      <div class="search-filter-card">
+        <div class="search-row">
+          <div class="search-input-flex">
+            <input type="text" id="booking-search-input" class="form-input" placeholder="Search by Booking ID (e.g. HTL-109482), Guest Name, or Email..." />
+          </div>
+          <button type="button" class="btn btn-dark" id="btn-search-trigger">Search</button>
+          <button type="button" class="btn btn-outline" id="btn-search-reset">Reset</button>
+        </div>
+
+        <div class="status-tab-group">
+          <button type="button" class="status-tab-btn active" data-status="all">All Bookings</button>
+          <button type="button" class="status-tab-btn" data-status="Confirmed">Confirmed</button>
+          <button type="button" class="status-tab-btn" data-status="Pending">Pending</button>
+          <button type="button" class="status-tab-btn" data-status="Completed">Completed</button>
+          <button type="button" class="status-tab-btn" data-status="Cancelled">Cancelled</button>
+        </div>
+      </div>
+
+      <!-- Bookings List Mount -->
+      <div class="booking-cards-list" id="bookings-mount">
+        <!-- Rendered via JavaScript -->
+      </div>
+    </div>
+  </main>
+
+  <!-- Booking Details Modal -->
+  <div class="modal-overlay" id="booking-details-modal" role="dialog" aria-modal="true" aria-labelledby="modal-booking-title">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title" id="modal-booking-title">Reservation Details</h3>
+        <button type="button" class="modal-close" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body" id="modal-booking-body">
+        <!-- Injected via JavaScript -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline modal-close">Close</button>
+        <button type="button" class="btn btn-dark" id="modal-print-btn">Print Voucher</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Cancellation Confirmation Modal -->
+  <div class="modal-overlay" id="cancel-confirm-modal" role="dialog" aria-modal="true">
+    <div class="modal-container" style="max-width: 480px;">
+      <div class="modal-header">
+        <h3 class="modal-title" style="color: var(--status-full);">Cancel Reservation</h3>
+        <button type="button" class="modal-close" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p style="margin-bottom: 14px;">Are you sure you want to cancel booking <strong id="cancel-modal-id"></strong>?</p>
+        <p class="text-muted" style="font-size: 0.88rem; margin-bottom: 16px;">
+          This action will immediately free up the reserved room inventory for other guests.
+        </p>
+        <div class="form-group">
+          <label for="cancel-reason-input" class="form-label">Reason for cancellation (optional):</label>
+          <input type="text" id="cancel-reason-input" class="form-input" placeholder="e.g. Schedule change, personal reasons..." />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline modal-close">Keep Reservation</button>
+        <button type="button" class="btn btn-primary" id="btn-confirm-cancel-action" style="background-color: var(--status-full); border-color: var(--status-full);">Confirm Cancellation</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom" style="border: none; padding-top: 0;">
+        <div>&copy; 2026 HOTELORA Resort &amp; Spa. All rights reserved.</div>
+        <div><a href="admin.html" style="color: var(--primary-gold-light);">Administration Access</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/storage.js"></script>
+  <script src="js/validation.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Mobile Nav
+      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+      const mainNav = document.getElementById('main-nav');
+      if (mobileMenuBtn && mainNav) {
+        mobileMenuBtn.addEventListener('click', () => mainNav.classList.toggle('show'));
+      }
+
+      let activeStatusFilter = 'all';
+      let searchQuery = '';
+      let pendingCancelBookingId = null;
+
+      const bookingsMount = document.getElementById('bookings-mount');
+      const searchInput = document.getElementById('booking-search-input');
+      const searchBtn = document.getElementById('btn-search-trigger');
+      const resetBtn = document.getElementById('btn-search-reset');
+      const statusTabs = document.querySelectorAll('.status-tab-btn');
+
+      // Modals
+      const detailsModal = document.getElementById('booking-details-modal');
+      const detailsBody = document.getElementById('modal-booking-body');
+      const cancelModal = document.getElementById('cancel-confirm-modal');
+      const cancelModalId = document.getElementById('cancel-modal-id');
+      const cancelReasonInput = document.getElementById('cancel-reason-input');
+      const confirmCancelBtn = document.getElementById('btn-confirm-cancel-action');
+
+      function renderBookings() {
+        const allBookings = StorageController.getBookings();
+
+        const filtered = allBookings.filter(b => {
+          // Status filter
+          if (activeStatusFilter !== 'all' && b.status !== activeStatusFilter) {
+            return false;
+          }
+
+          // Search query filter (matches ID, name, or email)
+          if (searchQuery) {
+            const q = searchQuery.toLowerCase();
+            const idMatch = b.bookingId && b.bookingId.toLowerCase().includes(q);
+            const nameMatch = b.guestName && b.guestName.toLowerCase().includes(q);
+            const emailMatch = b.email && b.email.toLowerCase().includes(q);
+            if (!idMatch && !nameMatch && !emailMatch) return false;
+          }
+          return true;
+        });
+
+        if (filtered.length === 0) {
+          bookingsMount.innerHTML = `
+            <div style="background: #fff; border: 1px solid var(--border-color); border-radius: 8px; padding: 50px 20px; text-align: center;">
+              <h3>No bookings found</h3>
+              <p class="text-muted" style="margin-top: 8px;">Try clearing your search query or switching the status filter.</p>
+              <a href="rooms.html" class="btn btn-primary btn-sm" style="margin-top: 16px;">Make a New Reservation</a>
+            </div>
+          `;
+          return;
+        }
+
+        bookingsMount.innerHTML = filtered.map(b => {
+          let badgeClass = 'badge-confirmed';
+          if (b.status === 'Pending') badgeClass = 'badge-pending';
+          else if (b.status === 'Cancelled') badgeClass = 'badge-cancelled';
+          else if (b.status === 'Completed') badgeClass = 'badge-completed';
+
+          const canCancel = (b.status === 'Confirmed' || b.status === 'Pending');
+
+          return `
+            <article class="customer-booking-card" data-id="${b.bookingId}">
+              <div class="booking-card-main">
+                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 6px;">
+                  <span class="booking-ref-badge">${b.bookingId}</span>
+                  <span class="badge ${badgeClass}">${b.status}</span>
+                </div>
+                <h3>${Validation.escapeHtml(b.roomName || 'Luxury Room')}</h3>
+                <div class="booking-meta-row">
+                  <div><strong>Guest:</strong> ${Validation.escapeHtml(b.guestName)}</div>
+                  <div><strong>Dates:</strong> ${Validation.formatDisplayDate(b.checkIn)} &rarr; ${Validation.formatDisplayDate(b.checkOut)}</div>
+                  <div><strong>Total:</strong> <span style="font-weight:700; color:var(--charcoal-900);">${Validation.formatCurrency(b.total)}</span></div>
+                  <div><strong>Rooms:</strong> ${b.numberOfRooms || 1} Room(s)</div>
+                </div>
+              </div>
+              <div class="booking-card-actions">
+                <button type="button" class="btn btn-outline btn-sm btn-view-booking" data-id="${b.bookingId}">View Details</button>
+                <a href="confirmation.html?bookingId=${encodeURIComponent(b.bookingId)}" class="btn btn-dark btn-sm">Print Voucher</a>
+                ${canCancel ? `<button type="button" class="btn btn-sm btn-cancel-booking" data-id="${b.bookingId}" style="color: var(--status-full); border-color: rgba(239,68,68,0.3);">Cancel</button>` : ''}
+              </div>
+            </article>
+          `;
+        }).join('');
+
+        // Attach listeners
+        bookingsMount.querySelectorAll('.btn-view-booking').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const id = btn.getAttribute('data-id');
+            showBookingDetailsModal(id);
+          });
+        });
+
+        bookingsMount.querySelectorAll('.btn-cancel-booking').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const id = btn.getAttribute('data-id');
+            pendingCancelBookingId = id;
+            cancelModalId.textContent = id;
+            cancelReasonInput.value = '';
+            cancelModal.classList.add('active');
+          });
+        });
+      }
+
+      // Details Modal
+      function showBookingDetailsModal(id) {
+        const b = StorageController.getBookingById(id);
+        if (!b) return;
+
+        detailsBody.innerHTML = `
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; font-size: 0.92rem; margin-bottom: 20px;">
+            <div><span>Reference ID:</span> <strong>${b.bookingId}</strong></div>
+            <div><span>Status:</span> <strong style="color:var(--primary-gold-dark);">${b.status}</strong></div>
+            <div><span>Guest:</span> <strong>${Validation.escapeHtml(b.guestName)}</strong></div>
+            <div><span>Email:</span> <strong>${Validation.escapeHtml(b.email)}</strong></div>
+            <div><span>Phone:</span> <strong>${Validation.escapeHtml(b.phone)}</strong></div>
+            <div><span>Country:</span> <strong>${Validation.escapeHtml(b.country || 'N/A')}</strong></div>
+            <div><span>Room:</span> <strong>${Validation.escapeHtml(b.roomName)}</strong></div>
+            <div><span>Rooms Count:</span> <strong>${b.numberOfRooms} Room(s)</strong></div>
+            <div><span>Check-In:</span> <strong>${Validation.formatDisplayDate(b.checkIn)}</strong></div>
+            <div><span>Check-Out:</span> <strong>${Validation.formatDisplayDate(b.checkOut)}</strong></div>
+            <div><span>Duration:</span> <strong>${b.nights || 1} Night(s)</strong></div>
+            <div><span>Guests:</span> <strong>${b.adults} Adults, ${b.children || 0} Children</strong></div>
+          </div>
+          <div style="background: var(--bg-cream); padding: 14px; border-radius: 6px; font-size: 0.88rem; margin-bottom: 16px;">
+            <strong>Special Requests:</strong> ${b.specialRequests && b.specialRequests.length ? b.specialRequests.join(', ') : 'None'}<br/>
+            ${b.instructions ? `<strong>Notes:</strong> <em>"${Validation.escapeHtml(b.instructions)}"</em><br/>` : ''}
+            ${b.cancellationReason ? `<strong style="color:var(--status-full);">Cancellation Note:</strong> ${Validation.escapeHtml(b.cancellationReason)}` : ''}
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; padding-top: 10px; border-top: 1px solid var(--border-color);">
+            <span style="font-size: 1.1rem; font-weight: 600;">Total Charged:</span>
+            <span style="font-size: 1.4rem; font-weight: 700; color: var(--primary-gold-dark);">${Validation.formatCurrency(b.total)}</span>
+          </div>
+        `;
+
+        document.getElementById('modal-print-btn').onclick = () => {
+          window.location.href = `confirmation.html?bookingId=${encodeURIComponent(b.bookingId)}`;
+        };
+
+        detailsModal.classList.add('active');
+      }
+
+      // Handle Cancel Confirmation
+      confirmCancelBtn.addEventListener('click', () => {
+        if (!pendingCancelBookingId) return;
+        const reason = cancelReasonInput.value.trim() || 'Cancelled by guest via customer portal.';
+        const success = StorageController.updateBookingStatus(pendingCancelBookingId, 'Cancelled', reason);
+
+        if (success) {
+          cancelModal.classList.remove('active');
+          Validation.showToast(`Reservation ${pendingCancelBookingId} cancelled. Availability has been updated.`, 'success');
+          renderBookings();
+        } else {
+          Validation.showToast('Could not cancel reservation.', 'error');
+        }
+      });
+
+      // Close modals
+      [detailsModal, cancelModal].forEach(m => {
+        m.querySelectorAll('.modal-close').forEach(btn => {
+          btn.addEventListener('click', () => m.classList.remove('active'));
+        });
+        m.addEventListener('click', (e) => {
+          if (e.target === m) m.classList.remove('active');
+        });
+      });
+
+      // Filter tabs
+      statusTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          statusTabs.forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          activeStatusFilter = tab.getAttribute('data-status');
+          renderBookings();
+        });
+      });
+
+      // Search actions
+      searchBtn.addEventListener('click', () => {
+        searchQuery = searchInput.value.trim();
+        renderBookings();
+      });
+
+      searchInput.addEventListener('keyup', (e) => {
+        if (e.key === 'Enter') {
+          searchQuery = searchInput.value.trim();
+          renderBookings();
+        }
+      });
+
+      resetBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        searchQuery = '';
+        renderBookings();
+      });
+
+      // Initial render
+      renderBookings();
+    });
+  </script>
+</body>
+</html>
+

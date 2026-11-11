@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reserve Your Stay — HOTELORA Luxury Hotel</title>
+  <meta name="description" content="Complete your reservation at HOTELORA with our streamlined multi-step booking process.">
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/booking.css">
+</head>
+<body>
+
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="index.html" class="brand-logo" aria-label="HOTELORA Home">
+        <div class="brand-logo-mark">H</div>
+        HOTEL<span>ORA</span>
+      </a>
+
+      <nav class="main-nav" id="main-nav">
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="rooms.html" class="nav-link">Rooms</a></li>
+          <li><a href="my-bookings.html" class="nav-link">My Bookings</a></li>
+        </ul>
+        <div class="header-actions">
+          <a href="admin.html" class="btn-admin-link">Admin Portal</a>
+        </div>
+      </nav>
+
+      <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle navigation menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="booking-page-wrap">
+    <div class="container">
+
+      <!-- Step Indicator Bar -->
+      <div class="booking-stepper">
+        <div class="step-item active" data-step="1">
+          <div class="step-circle">1</div>
+          <span class="step-label">Dates &amp; Rooms</span>
+        </div>
+        <div class="step-item" data-step="2">
+          <div class="step-circle">2</div>
+          <span class="step-label">Choose Room</span>
+        </div>
+        <div class="step-item" data-step="3">
+          <div class="step-circle">3</div>
+          <span class="step-label">Guest Details</span>
+        </div>
+        <div class="step-item" data-step="4">
+          <div class="step-circle">4</div>
+          <span class="step-label">Confirmation</span>
+        </div>
+      </div>
+
+      <!-- Main Booking Layout -->
+      <div class="booking-grid">
+
+        <!-- Form Panels Container -->
+        <div class="booking-forms-column">
+
+          <!-- STEP 1: Dates & Rooms -->
+          <section class="booking-step-panel active" data-panel="1" aria-labelledby="step1-title">
+            <div class="step-header">
+              <h2 id="step1-title">Step 1: Stay Dates &amp; Occupancy</h2>
+              <p>Select your arrival and departure dates, along with guest counts.</p>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="booking-checkin" class="form-label">Check-In Date <span class="required">*</span></label>
+                <input type="date" id="booking-checkin" class="form-input" required />
+              </div>
+              <div class="form-group">
+                <label for="booking-checkout" class="form-label">Check-Out Date <span class="required">*</span></label>
+                <input type="date" id="booking-checkout" class="form-input" required />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="booking-adults" class="form-label">Number of Adults <span class="required">*</span></label>
+                <select id="booking-adults" class="form-select">
+                  <option value="1">1 Adult</option>
+                  <option value="2" selected>2 Adults</option>
+                  <option value="3">3 Adults</option>
+                  <option value="4">4 Adults</option>
+                  <option value="5">5 Adults</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="booking-children" class="form-label">Number of Children</label>
+                <select id="booking-children" class="form-select">
+                  <option value="0" selected>0 Children</option>
+                  <option value="1">1 Child</option>
+                  <option value="2">2 Children</option>
+                  <option value="3">3 Children</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="booking-rooms-count" class="form-label">Number of Rooms <span class="required">*</span></label>
+              <select id="booking-rooms-count" class="form-select">
+                <option value="1" selected>1 Room</option>
+                <option value="2">2 Rooms</option>
+                <option value="3">3 Rooms</option>
+              </select>
+            </div>
+
+            <div class="step-navigation-bar" style="justify-content: flex-end;">
+              <button type="button" class="btn btn-primary" id="step-1-next">Continue to Room Selection &rarr;</button>
+            </div>
+          </section>
+
+          <!-- STEP 2: Room Selection -->
+          <section class="booking-step-panel" data-panel="2" aria-labelledby="step2-title">
+            <div class="step-header">
+              <h2 id="step2-title">Step 2: Select Your Preferred Room Category</h2>
+              <p>Choose an available room that matches your style and preferences.</p>
+            </div>
+
+            <div class="room-selection-options" id="room-options-container">
+              <!-- Rendered via js/booking.js -->
+            </div>
+
+            <div class="step-navigation-bar">
+              <button type="button" class="btn btn-outline" id="step-2-prev">&larr; Back to Dates</button>
+              <button type="button" class="btn btn-primary" id="step-2-next">Continue to Guest Details &rarr;</button>
+            </div>
+          </section>
+
+          <!-- STEP 3: Guest Information & Special Requests -->
+          <section class="booking-step-panel" data-panel="3" aria-labelledby="step3-title">
+            <div class="step-header">
+              <h2 id="step3-title">Step 3: Guest Information &amp; Special Requests</h2>
+              <p>Please provide your contact information and customize your stay.</p>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="guest-fullname" class="form-label">Full Name <span class="required">*</span></label>
+                <input type="text" id="guest-fullname" class="form-input" placeholder="e.g. Eleanor Vance" required />
+              </div>
+
+              <div class="form-group">
+                <label for="guest-email" class="form-label">Email Address <span class="required">*</span></label>
+                <input type="email" id="guest-email" class="form-input" placeholder="e.g. eleanor@example.com" required />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="guest-phone" class="form-label">Phone Number <span class="required">*</span></label>
+                <input type="tel" id="guest-phone" class="form-input" placeholder="+1 (555) 019-2834" required />
+              </div>
+
+              <div class="form-group">
+                <label for="guest-country" class="form-label">Country / Region <span class="required">*</span></label>
+                <input type="text" id="guest-country" class="form-input" value="United States" required />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="guest-arrival" class="form-label">Estimated Arrival Time</label>
+                <select id="guest-arrival" class="form-select">
+                  <option value="14:00">14:00 (2:00 PM)</option>
+                  <option value="15:00" selected>15:00 (3:00 PM - Standard Check-in)</option>
+                  <option value="16:00">16:00 (4:00 PM)</option>
+                  <option value="18:00">18:00 (6:00 PM)</option>
+                  <option value="20:00">20:00 (8:00 PM)</option>
+                  <option value="22:00">Late Arrival (After 10:00 PM)</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="guest-accessibility" class="form-label">Accessibility Requirements</label>
+                <select id="guest-accessibility" class="form-select">
+                  <option value="None" selected>Standard Accessibility</option>
+                  <option value="Wheelchair Accessible">Wheelchair Accessible Suite</option>
+                  <option value="Ground Floor / Elevator Close">Near Elevator / Low Floor</option>
+                  <option value="Roll-in Shower">Roll-in Shower Needed</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="guest-bed-pref" class="form-label">Bed Setup Preference</label>
+              <select id="guest-bed-pref" class="form-select">
+                <option value="Default" selected>Standard Layout (As configured)</option>
+                <option value="King Bed Preferred">Single Large King Bed</option>
+                <option value="Twin Beds Preferred">Twin Separate Beds</option>
+              </select>
+            </div>
+
+            <!-- Special Requests Checkboxes -->
+            <div class="form-group">
+              <label class="form-label">Special Requests (Select all that apply)</label>
+              <div class="special-requests-grid">
+                <label class="special-request-item">
+                  <input type="checkbox" name="special-requests" value="Early check-in" />
+                  <span class="special-request-label">Early check-in</span>
+                </label>
+                <label class="special-request-item">
+                  <input type="checkbox" name="special-requests" value="Late check-out" />
+                  <span class="special-request-label">Late check-out</span>
+                </label>
+                <label class="special-request-item">
+                  <input type="checkbox" name="special-requests" value="Airport pickup" />
+                  <span class="special-request-label">Airport pickup</span>
+                </label>
+                <label class="special-request-item">
+                  <input type="checkbox" name="special-requests" value="Extra pillows" />
+                  <span class="special-request-label">Extra pillows</span>
+                </label>
+                <label class="special-request-item">
+                  <input type="checkbox" name="special-requests" value="Extra bed" />
+                  <span class="special-request-label">Extra bed</span>
+                </label>
+                <label class="special-request-item">
+                  <input type="checkbox" name="special-requests" value="Vegetarian meal" />
+                  <span class="special-request-label">Vegetarian meal</span>
+                </label>
+                <label class="special-request-item">
+                  <input type="checkbox" name="special-requests" value="Birthday decoration" />
+                  <span class="special-request-label">Birthday decoration</span>
+                </label>
+                <label class="special-request-item">
+                  <input type="checkbox" name="special-requests" value="Honeymoon arrangement" />
+                  <span class="special-request-label">Honeymoon arrangement</span>
+                </label>
+                <label class="special-request-item">
+                  <input type="checkbox" name="special-requests" value="Other requests" />
+                  <span class="special-request-label">Other requests</span>
+                </label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="guest-instructions" class="form-label">Additional Instructions / Dietary Notes</label>
+              <textarea id="guest-instructions" class="form-textarea" placeholder="Please mention any specific flight details, dietary preferences, or arrangements you would like our concierge to prepare..."></textarea>
+            </div>
+
+            <div class="step-navigation-bar">
+              <button type="button" class="btn btn-outline" id="step-3-prev">&larr; Back to Room</button>
+              <button type="button" class="btn btn-primary" id="step-3-next">Review Booking Summary &rarr;</button>
+            </div>
+          </section>
+
+          <!-- STEP 4: Review Summary & Confirmation -->
+          <section class="booking-step-panel" data-panel="4" aria-labelledby="step4-title">
+            <div class="step-header">
+              <h2 id="step4-title">Step 4: Review Booking Summary &amp; Confirm</h2>
+              <p>Please double check your stay details before confirming the reservation.</p>
+            </div>
+
+            <!-- Injected Review Details -->
+            <div id="review-content-mount">
+              <!-- Dynamic content via js/booking.js -->
+            </div>
+
+            <!-- Agreement Checkbox -->
+            <div class="confirmation-agreement">
+              <label class="checkbox-label">
+                <input type="checkbox" id="agreement-checkbox" />
+                <span>I confirm that the booking information is correct and agree to the reservation terms &amp; hotel policies.</span>
+              </label>
+            </div>
+
+            <!-- Simulated Payment Notice -->
+            <div class="demo-notice-box" style="margin-top: 16px;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+              <span><strong>Demonstration Mode:</strong> No real payment or credit card is required. Your reservation will be registered and stored directly in your browser's LocalStorage.</span>
+            </div>
+
+            <div class="step-navigation-bar">
+              <button type="button" class="btn btn-outline" id="step-4-prev">&larr; Back to Guest Info</button>
+              <button type="button" class="btn btn-primary btn-lg" id="btn-confirm-booking" disabled>
+                Confirm Reservation &rarr;
+              </button>
+            </div>
+          </section>
+
+        </div>
+
+        <!-- Sticky Price Summary Sidebar -->
+        <aside class="booking-summary-sidebar">
+          <div class="summary-header">
+            <h3>Reservation Summary</h3>
+          </div>
+
+          <div class="summary-room-preview">
+            <img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=300&q=80" alt="Selected Room" class="summary-room-thumb" id="summary-thumb" />
+            <div class="summary-room-info">
+              <h4 id="summary-room-name">Standard Room</h4>
+              <span class="badge badge-available">Selected</span>
+            </div>
+          </div>
+
+          <ul class="summary-stay-details">
+            <li><span>Dates:</span> <strong id="summary-dates">-</strong></li>
+            <li><span>Duration:</span> <strong id="summary-nights">0 Nights</strong></li>
+            <li><span>Guests:</span> <strong id="summary-guests">2 Adults</strong></li>
+            <li><span>Rooms:</span> <strong id="summary-rooms">1 Room</strong></li>
+          </ul>
+
+          <table class="price-breakdown-table">
+            <tbody>
+              <tr>
+                <td>Room Subtotal:</td>
+                <td id="sum-subtotal">$0.00</td>
+              </tr>
+              <tr id="sum-discount-row" class="discount-row" style="display: none;">
+                <td>Promo Discount:</td>
+                <td id="sum-discount">-$0.00</td>
+              </tr>
+              <tr id="sum-extraguest-row" style="display: none;">
+                <td>Extra Guest Fee:</td>
+                <td id="sum-extraguest">+$0.00</td>
+              </tr>
+              <tr>
+                <td>Taxes &amp; Fees (12%):</td>
+                <td id="sum-taxes">+$0.00</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="summary-total-box">
+            <span class="summary-total-label">Total Amount:</span>
+            <span class="summary-total-amount" id="sum-total">$0.00</span>
+          </div>
+
+          <div class="demo-notice-box">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+            <span>Free cancellation up to 24 hours prior to arrival.</span>
+          </div>
+        </aside>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom" style="border: none; padding-top: 0;">
+        <div>&copy; 2026 HOTELORA Resort &amp; Spa. All rights reserved.</div>
+        <div><a href="admin.html" style="color: var(--primary-gold-light);">Administration Access</a></div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/storage.js"></script>
+  <script src="js/validation.js"></script>
+  <script src="js/pricing.js"></script>
+  <script src="js/availability.js"></script>
+  <script src="js/booking.js"></script>
+</body>
+</html>
+

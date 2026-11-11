@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard — HOTELORA Hotel Management</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+  <div class="admin-layout">
+
+    <!-- Admin Sidebar -->
+    <aside class="admin-sidebar" id="admin-sidebar">
+      <div class="admin-sidebar-header">
+        <div class="admin-brand">
+          <div class="brand-logo-mark" style="width: 32px; height: 32px; font-size: 1rem;">H</div>
+          HOTEL<span>ORA</span>
+        </div>
+        <span class="admin-badge-role">Staff</span>
+      </div>
+
+      <nav class="admin-nav">
+        <button type="button" class="admin-nav-item active" data-section="overview">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+          Overview
+        </button>
+
+        <button type="button" class="admin-nav-item" data-section="rooms">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+          Room Management
+        </button>
+
+        <button type="button" class="admin-nav-item" data-section="calendar">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+          Availability Calendar
+        </button>
+
+        <button type="button" class="admin-nav-item" data-section="bookings">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          Reservations
+        </button>
+
+        <button type="button" class="admin-nav-item" data-section="pricing">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+          Pricing Management
+        </button>
+
+        <button type="button" class="admin-nav-item" data-section="guests">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          Guest Directory
+        </button>
+
+        <button type="button" class="admin-nav-item" data-section="reports">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+          Reports &amp; Analytics
+        </button>
+
+        <button type="button" class="admin-nav-item" data-section="settings">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>
+          Settings &amp; Demo
+        </button>
+      </nav>
+
+      <div class="admin-sidebar-footer">
+        <button type="button" class="btn btn-outline btn-sm" id="btn-admin-logout" style="color: #fff; border-color: rgba(255,255,255,0.2); width: 100%; margin-bottom: 8px;">
+          Log Out (Demo)
+        </button>
+        <a href="index.html" class="btn btn-outline btn-sm" style="color: #fff; border-color: rgba(255,255,255,0.2); width: 100%;">
+          &larr; View Website
+        </a>
+      </div>
+    </aside>
+
+    <!-- Admin Main Body -->
+    <main class="admin-main">
+
+      <!-- Top Header -->
+      <div class="admin-top-header">
+        <div style="display: flex; align-items: center; gap: 14px;">
+          <button class="mobile-admin-toggle" id="mobile-admin-toggle" aria-label="Toggle sidebar">&#9776;</button>
+          <div class="admin-page-title">
+            <h1 id="admin-section-heading">Dashboard Overview</h1>
+            <p id="admin-section-sub">Real-time property metrics, daily occupancy, and financial status.</p>
+          </div>
+        </div>
+        <div class="admin-header-actions">
+          <a href="booking.html" class="btn btn-primary btn-sm">+ Manual Reservation</a>
+        </div>
+      </div>
+
+      <!-- ================= SECTION 1: OVERVIEW ================= -->
+      <section class="admin-section active" id="sec-overview">
+        <!-- Stats Row -->
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon-wrap stat-icon-gold">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
+            </div>
+            <div class="stat-info">
+              <span class="stat-label">Total Rooms</span>
+              <span class="stat-value" id="stat-total-rooms">0</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon-wrap stat-icon-green">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="stat-info">
+              <span class="stat-label">Available Today</span>
+              <span class="stat-value" id="stat-avail-today">0</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon-wrap stat-icon-blue">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+            </div>
+            <div class="stat-info">
+              <span class="stat-label">Occupied Today</span>
+              <span class="stat-value" id="stat-occupied-today">0</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon-wrap stat-icon-gold">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+            </div>
+            <div class="stat-info">
+              <span class="stat-label">Total Revenue</span>
+              <span class="stat-value" id="stat-revenue">$0.00</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon-wrap stat-icon-blue">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line></svg>
+            </div>
+            <div class="stat-info">
+              <span class="stat-label">Total Bookings</span>
+              <span class="stat-value" id="stat-total-bookings">0</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon-wrap stat-icon-gold">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+            </div>
+            <div class="stat-info">
+              <span class="stat-label">Pending Approval</span>
+              <span class="stat-value" id="stat-pending-bookings">0</span>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon-wrap stat-icon-red">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+            </div>
+            <div class="stat-info">
+              <span class="stat-label">Cancelled</span>
+              <span class="stat-value" id="stat-cancelled-bookings">0</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Occupancy Progress Bars Card -->
+        <div class="admin-card">
+          <div class="admin-card-header">
+            <h3 class="admin-card-title">Room Occupancy Breakdown Today</h3>
+            <span class="text-muted" style="font-size: 0.85rem;">Calculated using overlap logic</span>
+          </div>
+          <div id="overview-occupancy-bars-mount">
+            <!-- Injected via JavaScript -->
+          </div>
+        </div>
+
+        <!-- Recent Bookings Table -->
+        <div class="admin-card">
+          <div class="admin-card-header">
+            <h3 class="admin-card-title">Recent Reservations</h3>
+          </div>
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Booking ID</th>
+                  <th>Guest Name</th>
+                  <th>Room Category</th>
+                  <th>Check-In</th>
+                  <th>Amount</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="overview-recent-bookings-mount">
+                <!-- Injected via JavaScript -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SECTION 2: ROOM MANAGEMENT ================= -->
+      <section class="admin-section" id="sec-rooms">
+        <div class="admin-card">
+          <div class="admin-card-header">
+            <h3 class="admin-card-title">Property Room Categories</h3>
+            <button type="button" class="btn btn-primary btn-sm" id="btn-add-room">+ Add New Category</button>
+          </div>
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Photo</th>
+                  <th>Category Name</th>
+                  <th>Total Units</th>
+                  <th>Base Rates</th>
+                  <th>Max Occupancy</th>
+                  <th>Bed Layout</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="admin-rooms-table-mount">
+                <!-- Injected via JavaScript -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SECTION 3: AVAILABILITY CALENDAR ================= -->
+      <section class="admin-section" id="sec-calendar">
+        <div class="admin-card">
+          <div class="admin-card-header">
+            <h3 class="admin-card-title">Master Property Availability Calendar</h3>
+            <span class="text-muted" style="font-size: 0.85rem;">Green: Available | Yellow: Limited | Red: Fully Booked</span>
+          </div>
+          <div id="admin-calendar-mount">
+            <!-- Calendar component rendered here -->
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SECTION 4: BOOKING MANAGEMENT ================= -->
+      <section class="admin-section" id="sec-bookings">
+        <div class="admin-card">
+          <div class="admin-card-header">
+            <h3 class="admin-card-title">All Reservations</h3>
+            <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+              <input type="text" id="admin-booking-search" class="form-input" placeholder="Search by ID, Name, or Email..." style="width: 250px; padding: 6px 12px;" />
+              <select id="admin-booking-filter" class="form-select" style="width: 150px; padding: 6px 12px;">
+                <option value="all" selected>All Statuses</option>
+                <option value="Confirmed">Confirmed</option>
+                <option value="Pending">Pending</option>
+                <option value="Completed">Completed</option>
+                <option value="Cancelled">Cancelled</option>
+              </select>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Booking ID</th>
+                  <th>Guest</th>
+                  <th>Room</th>
+                  <th>Stay Dates</th>
+                  <th>Total</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="admin-bookings-table-mount">
+                <!-- Injected via JavaScript -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SECTION 5: PRICING MANAGEMENT ================= -->
+      <section class="admin-section" id="sec-pricing">
+        <div class="admin-card">
+          <div class="admin-card-header">
+            <h3 class="admin-card-title">Global Surcharge &amp; Tax Configuration</h3>
+          </div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+            <div class="form-group">
+              <label for="pricing-tax-rate" class="form-label">Government Tax Rate (%)</label>
+              <input type="number" id="pricing-tax-rate" class="form-input" min="0" max="40" step="0.5" />
+            </div>
+            <div class="form-group">
+              <label for="pricing-extra-guest" class="form-label">Extra Guest Surcharge ($ / night)</label>
+              <input type="number" id="pricing-extra-guest" class="form-input" min="0" max="200" step="5" />
+            </div>
+            <div class="form-group">
+              <label for="pricing-breakfast" class="form-label">Breakfast Charge ($ / guest / day)</label>
+              <input type="number" id="pricing-breakfast" class="form-input" min="0" max="100" step="5" />
+            </div>
+          </div>
+        </div>
+
+        <div class="admin-card">
+          <div class="admin-card-header">
+            <h3 class="admin-card-title">Room Category Dynamic Pricing Matrix</h3>
+            <button type="button" class="btn btn-primary btn-sm" id="btn-save-pricing">Save All Pricing Changes</button>
+          </div>
+          <div class="table-responsive">
+            <table class="admin-table pricing-matrix-table">
+              <thead>
+                <tr>
+                  <th>Room Category</th>
+                  <th>Base Rate ($)</th>
+                  <th>Weekend Rate ($)</th>
+                  <th>Seasonal Rate ($)</th>
+                  <th>Discount (%)</th>
+                  <th>Inventory</th>
+                </tr>
+              </thead>
+              <tbody id="admin-pricing-table-mount">
+                <!-- Injected via JavaScript -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SECTION 6: GUEST MANAGEMENT ================= -->
+      <section class="admin-section" id="sec-guests">
+        <div class="admin-card">
+          <div class="admin-card-header">
+            <h3 class="admin-card-title">Guest Directory &amp; History</h3>
+          </div>
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>Guest Name</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                  <th>Country</th>
+                  <th>Total Stays</th>
+                  <th>Lifetime Spend</th>
+                </tr>
+              </thead>
+              <tbody id="admin-guests-table-mount">
+                <!-- Injected via JavaScript -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SECTION 7: REPORTS & ANALYTICS ================= -->
+      <section class="admin-section" id="sec-reports">
+        <div class="admin-card">
+          <div class="admin-card-header">
+            <h3 class="admin-card-title">Performance Filter</h3>
+            <div style="display: flex; gap: 8px;">
+              <button type="button" class="btn btn-outline btn-sm report-date-btn active" data-range="all">All Time</button>
+              <button type="button" class="btn btn-outline btn-sm report-date-btn" data-range="today">Today</button>
+              <button type="button" class="btn btn-outline btn-sm report-date-btn" data-range="7days">Last 7 Days</button>
+              <button type="button" class="btn btn-outline btn-sm report-date-btn" data-range="30days">Last 30 Days</button>
+            </div>
+          </div>
+
+          <!-- KPI Cards -->
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-info">
+                <span class="stat-label">Total Reservations</span>
+                <span class="stat-value" id="report-total-res">0</span>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-info">
+                <span class="stat-label">Total Revenue</span>
+                <span class="stat-value" id="report-total-rev">$0.00</span>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-info">
+                <span class="stat-label">Avg Booking Value</span>
+                <span class="stat-value" id="report-avg-val">$0.00</span>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-info">
+                <span class="stat-label">Est. Occupancy Rate</span>
+                <span class="stat-value" id="report-occupancy">0%</span>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-info">
+                <span class="stat-label">Most Popular Room</span>
+                <span class="stat-value" id="report-popular-room" style="font-size: 1.15rem;">-</span>
+              </div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-info">
+                <span class="stat-label">Cancellations</span>
+                <span class="stat-value" id="report-cancellations">0</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="chart-container" style="margin-top: 20px;">
+            <h4 style="font-size: 1.1rem; margin-bottom: 16px;">Category Popularity Distribution (Stays Count)</h4>
+            <div id="report-popularity-chart-mount">
+              <!-- Rendered via JavaScript -->
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= SECTION 8: SETTINGS & DEMO RESET ================= -->
+      <section class="admin-section" id="sec-settings">
+        <div class="admin-card">
+          <div class="admin-card-header">
+            <h3 class="admin-card-title">Hotel Information Settings</h3>
+            <button type="button" class="btn btn-primary btn-sm" id="btn-save-settings">Save Property Details</button>
+          </div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div class="form-group">
+              <label for="set-hotel-name" class="form-label">Property Name</label>
+              <input type="text" id="set-hotel-name" class="form-input" />
+            </div>
+            <div class="form-group">
+              <label for="set-hotel-email" class="form-label">Reservations Email</label>
+              <input type="email" id="set-hotel-email" class="form-input" />
+            </div>
+            <div class="form-group">
+              <label for="set-hotel-phone" class="form-label">Contact Phone</label>
+              <input type="text" id="set-hotel-phone" class="form-input" />
+            </div>
+            <div class="form-group">
+              <label for="set-hotel-address" class="form-label">Physical Address</label>
+              <input type="text" id="set-hotel-address" class="form-input" />
+            </div>
+          </div>
+        </div>
+
+        <div class="admin-card" style="border-left: 4px solid var(--status-full);">
+          <div class="admin-card-header">
+            <h3 class="admin-card-title" style="color: var(--status-full);">Reset Demo Data</h3>
+          </div>
+          <p class="text-muted" style="margin-bottom: 18px;">
+            Clears all customized LocalStorage keys (`rooms`, `bookings`, `pricing`, `settings`) and restores the default luxury demo dataset with realistic rooms, active reservations, and baseline pricing.
+          </p>
+          <button type="button" class="btn btn-sm" id="btn-reset-demo-data" style="background-color: var(--status-full); color: #fff;">
+            Reset Demo Data to Factory Default
+          </button>
+        </div>
+      </section>
+
+    </main>
+
+  </div>
+
+  <!-- Add/Edit Room Modal -->
+  <div class="modal-overlay" id="admin-room-modal" role="dialog" aria-modal="true">
+    <div class="modal-container" style="max-width: 680px;">
+      <div class="modal-header">
+        <h3 class="modal-title" id="admin-room-modal-title">Room Category Editor</h3>
+        <button type="button" class="modal-close" aria-label="Close modal">&times;</button>
+      </div>
+      <form id="admin-room-form">
+        <div class="modal-body">
+          <input type="hidden" id="room-form-id" />
+          <div class="form-row">
+            <div class="form-group">
+              <label for="room-form-name" class="form-label">Room Category Name <span class="required">*</span></label>
+              <input type="text" id="room-form-name" class="form-input" required />
+            </div>
+            <div class="form-group">
+              <label for="room-form-category" class="form-label">Category Group</label>
+              <input type="text" id="room-form-category" class="form-input" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="room-form-price" class="form-label">Base Rate ($ / night) <span class="required">*</span></label>
+              <input type="number" id="room-form-price" class="form-input" min="30" step="5" required />
+            </div>
+            <div class="form-group">
+              <label for="room-form-weekend" class="form-label">Weekend Rate ($ / night)</label>
+              <input type="number" id="room-form-weekend" class="form-input" min="30" step="5" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="room-form-inventory" class="form-label">Total Inventory (Units) <span class="required">*</span></label>
+              <input type="number" id="room-form-inventory" class="form-input" min="1" max="100" required />
+            </div>
+            <div class="form-group">
+              <label for="room-form-adults" class="form-label">Base Adults Capacity</label>
+              <input type="number" id="room-form-adults" class="form-input" min="1" max="10" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="room-form-children" class="form-label">Max Children Capacity</label>
+              <input type="number" id="room-form-children" class="form-input" min="0" max="6" required />
+            </div>
+            <div class="form-group">
+              <label for="room-form-bed" class="form-label">Bed Layout</label>
+              <input type="text" id="room-form-bed" class="form-input" placeholder="e.g. 1 King Bed" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="room-form-size" class="form-label">Room Dimensions</label>
+              <input type="text" id="room-form-size" class="form-input" placeholder="e.g. 38 m² / 410 sq ft" required />
+            </div>
+            <div class="form-group">
+              <label for="room-form-image" class="form-label">Image URL</label>
+              <input type="url" id="room-form-image" class="form-input" placeholder="https://..." />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="room-form-desc" class="form-label">Description</label>
+            <textarea id="room-form-desc" class="form-textarea" rows="3" required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="room-form-amenities" class="form-label">Amenities (Comma separated)</label>
+            <input type="text" id="room-form-amenities" class="form-input" placeholder="Free Wi-Fi, Air Conditioning, Balcony, Mini Bar" />
+          </div>
+
+          <div style="display: flex; gap: 24px; margin-top: 10px;">
+            <label class="checkbox-label">
+              <input type="checkbox" id="room-form-balcony" />
+              <span>Includes Balcony</span>
+            </label>
+            <label class="checkbox-label">
+              <input type="checkbox" id="room-form-breakfast" />
+              <span>Complimentary Breakfast Included</span>
+            </label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline modal-close">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Category</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- View Booking Modal -->
+  <div class="modal-overlay" id="admin-booking-view-modal" role="dialog" aria-modal="true">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 class="modal-title">Reservation Audit Details</h3>
+        <button type="button" class="modal-close" aria-label="Close modal">&times;</button>
+      </div>
+      <div class="modal-body" id="admin-booking-view-body">
+        <!-- Injected via JavaScript -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline modal-close">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Demonstration Admin Login Modal Overlay -->
+  <div class="modal-overlay" id="admin-login-modal" role="dialog" aria-modal="true" style="background-color: rgba(18, 22, 28, 0.95); z-index: 2000;">
+    <div class="modal-container" style="max-width: 440px;">
+      <div class="modal-header" style="text-align: center; display: block;">
+        <div class="brand-logo-mark" style="width: 48px; height: 48px; margin: 0 auto 12px; font-size: 1.4rem;">H</div>
+        <h3 class="modal-title">Staff Administration Login</h3>
+        <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 4px;">Simulated Client-Side Authentication</p>
+      </div>
+      <form id="admin-login-form">
+        <div class="modal-body">
+          <div class="demo-notice-box" style="margin-bottom: 20px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg>
+            <span><strong>Demo Mode:</strong> Client-side simulation only. LocalStorage does not provide secure cryptographic authentication. Use password <strong>admin123</strong> or click quick sign in below.</span>
+          </div>
+
+          <div class="form-group">
+            <label for="admin-login-user" class="form-label">Username</label>
+            <input type="text" id="admin-login-user" class="form-input" value="admin" required />
+          </div>
+
+          <div class="form-group">
+            <label for="admin-login-pass" class="form-label">Password</label>
+            <input type="password" id="admin-login-pass" class="form-input" value="admin123" required />
+          </div>
+
+          <div id="login-error-msg" style="color: var(--status-full); font-size: 0.85rem; margin-bottom: 12px; display: none;">
+            Invalid credentials. Please use password 'admin123'.
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width: 100%; margin-bottom: 10px;">Sign In to Dashboard</button>
+          <button type="button" class="btn btn-outline" id="btn-quick-demo-login" style="width: 100%; font-size: 0.85rem;">One-Click Quick Sign In</button>
+        </div>
+      </form>
+      <div class="modal-footer" style="justify-content: center;">
+        <a href="index.html" class="text-muted" style="font-size: 0.85rem;">&larr; Return to Guest Website</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/storage.js"></script>
+  <script src="js/validation.js"></script>
+  <script src="js/pricing.js"></script>
+  <script src="js/availability.js"></script>
+  <script src="js/admin.js"></script>
+</body>
+</html>
+
